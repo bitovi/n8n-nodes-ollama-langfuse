@@ -134,3 +134,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# n8n’s runtime data
+n8n-data/database.sqlite
+n8n-data/*.log
+
+# macOS Finder metadata
+.DS_Store
