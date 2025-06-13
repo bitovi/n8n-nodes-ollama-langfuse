@@ -39,17 +39,11 @@ class LmChatOllama {
     const langfuseCreds = await getCreds.call(this, 'langfuseApi', itemIndex);
     const modelName = getParam.call(this, 'model', itemIndex);
 
-    console.log('[LmChatOllama] ollamaCreds:', ollamaCreds);
-    console.log('[LmChatOllama] langfuseCreds:', { publicKey: langfuseCreds.publicKey, baseUrl: langfuseCreds.baseUrl });
-    console.log('[LmChatOllama] modelName:', modelName);
-
     const langfuseHandler = new LangfuseN8nHandler({
       publicKey: langfuseCreds.publicKey,
       secretKey: langfuseCreds.secretKey,
       baseUrl: langfuseCreds.baseUrl,
     });
-
-    console.log('[LmChatOllama] Langfuse handler created');
 
     const model = new ChatOllama({
       baseUrl: ollamaCreds.baseUrl,
@@ -57,7 +51,6 @@ class LmChatOllama {
       callbacks: [langfuseHandler],
     });
 
-    // Return the Runnable for downstream Basic LLM Chain
     return { response: model };
   }
 }
